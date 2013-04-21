@@ -1,7 +1,10 @@
 # Java bytecode
 *.class
 
-# Files
+# Vim swap files
+*.swp
+
+# Various files
 LAJ1_tournoi_plan_de_tests_Bruno_Parmentier_g38496.txt
 LAJ1_tournoi_plan_de_tests_Bruno_Parmentier_g38496.pdf
 plan_tests_instructions.txt
