@@ -1,0 +1,341 @@
+
+
+/* plan de tests pour le projet « Le grand Tournoi »
+|
+| 2012-2013
+
+
+Plan de tests pour la classe MainTournament.
+
+Les méthodes testées sont :
+* boolean addPlayer(Player)
+* boolean removePlayer(Player)
+* void setTurnResult(int, ResultEnum)
+* List<Match> getMatchs()
+* List<Match> getMatchsDone()
+* List<Match> getMatchsToPlay()
+*/
+
+/* un PLAN DE TEST doit décrire les cas de tests unitaires à faire pour permettre de 
+vérifier et convaincre l'utilisateur du programme, ici les professeurs, que les méthodes 
+testées sont effectivement bien programmées. 
+
+Il contient donc un ensemble représentatif des cas qui testent des cas significatifs. Bien sûr,
+dans une certaine limite ce choix est arbitraire.
+
+La description doit être au total assez claire et précise pour qu'un programmeur qui a eu 
+connaissance du cahier de charge de l'application puisse, avec un minimum d'interprétation
+personnelle, programmer effectivement les cas décrits.
+
+Il convient donc,  en évitant les redondances,
+ * de décrire brièvement le cas pour l'expliciter à la personne
+ * de décrire le contexte d'utilisation 
+   * l'état des attributs importants avant application de la méthode, 
+   * le scénario pour savoir comment on arrive avec les méthodes à disposition à cet état,
+   * les variables passées en paramètre le cas échéant
+ * de décrire la manière de procéder aux vérifications.
+   * les méthodes JUnit testent des vrais et faux; cela est assez simple sur les valeurs retournées par les méthodes qui ont des valeurs de retour, mais 
+   * il faut aussi parfois tester en détails que le contexte est modifié comme il faut
+   * voir par exemple http://www.siteduzero.com/informatique/tutoriels/les-tests-unitaires-en-java/tester-proprement-la-gestion-du-contexte
+*/
+
+/* ============ addPlayer ===================
+* La méthode addPlayer ajoute le participant s'il reste de la place.
+* Elle retourne vrai si l'ajout a pu se faire.
+*/
+/**
+* Cas Add1/
+* boolean addPlayer(Player)
+*
+* Avec l'inscription ouverte et
+* en début de tournoi (lorsque la liste des joueurs est vide), la
+* méthode ajoute effectivement un joueur pas encore dans la liste
+* (on vérifie qu'il est bien rajouté) et renvoie vrai.
+*
+*/
+
+/**
+* Cas Add2/
+* boolean addPlayer(Player)
+*
+* Avec l'inscription ouverte et
+* quand il y a un nombre de joueurs inscrits égal à PLAYER_MAX_NUMBER -1
+* la méthode ajoute effectivement un joueur pas encore dans la liste
+* (on vérifie qu'il est bien rajouté) et renvoie vrai.
+*
+*/
+/**
+* Cas Add3/
+* boolean addPlayer(Player)
+*
+* Avec l'inscription ouverte et
+* quand il y a une nombre de joueurs inscrits égal à PLAYER_MAX_NUMBER,
+* la méthode essaye d'ajouter un joueur pas encore dans la liste et ne peut pas (on vérifie que la liste des
+* joueurs n'a pas changé) et renvoie faux.
+*
+*/
+/**
+* Cas Add4/
+* boolean addPlayer(Player)
+*
+* Avec l'inscription ouverte et
+* quand il y a un nombre de joueurs inscrits inférieur à PLAYER_MAX_NUMBER ,
+* la méthode essaye d'ajouter un joueur déjà dans la liste et ne peut pas
+* et renvoie faux.
+*
+*/
+/**
+* Cas Add5/
+* boolean addPlayer(Player)
+*
+* Après la cloture des inscriptions, la méthode ne peut pas ajouter
+* un joueur pas encore dans la liste (on vérifie que la liste des joueurs n'a pas changé) et
+* renvoie faux.
+*
+*/
+/**
+* Cas Add6/
+* boolean addPlayer(Player)
+*
+* Avec l'inscription ouverte, la méthode reçoit en paramètre
+* un Player NULL et
+* renvoie faux (ou lance une NullPointeurException).
+*
+*/
+
+/* ============ removePlayer ===================
+* La méthode removePlayer permet de supprimer un participant tant que les
+* inscriptions sont encore ouvertes. Elle retourne vrai si le participant
+* a pu être supprimé.
+*/
+/**
+* Cas Rem1/
+* boolean removePlayer(Player)
+*
+* Avec l'inscription ouverte,
+* la liste des joueurs est vide,
+* la méthode ne peut pas enlever de joueur et
+* renvoie faux.
+*
+*/
+/**
+* Cas Rem2/
+* boolean removePlayer(Player)
+*
+* Avec l'inscription ouverte,
+* la liste des joueurs est non vide,
+* la méthode peut enlever le premier joueur de la liste
+* (on vérifie que la liste des joueurs après enlèvement est celle attendue) et
+* renvoie vrai.
+*
+*/
+
+/**
+* Cas Rem3/
+* boolean removePlayer(Player)
+*
+* Avec l'inscription ouverte,
+* avec une liste de joueurs non vide,
+* la méthode peut enlever le dernier joueur de la liste
+* (on vérifie que la liste des joueurs après enlèvement est celle attendue) et
+* renvoie vrai.
+*
+*/
+/**
+* Cas Rem4/
+* boolean removePlayer(Player)
+*
+* Avec l'inscription ouverte,
+* avec une liste de joueurs non vide,
+* la méthode cherche à enlever un joueur qui n'est pas dans la liste
+* (on vérifie que la liste des joueurs n'est pas modifiée) et
+* la méthode renvoie faux.
+*
+*/
+/**
+* Cas Rem5/
+* boolean removePlayer(Player)
+*
+* Avec l'inscription fermée,
+* avec une liste de joueurs non vide,
+* la méthode cherche à enlever un joueur qui est dans la liste
+* (on vérifie que la liste des joueurs n'est pas modifiée) et
+* la méthode renvoie faux.
+*
+*/
+/**
+* Cas Rem6/
+* boolean removePlayer(Player)
+*
+* Avec l'inscription ouverte,
+* avec une liste de joueurs non vide,
+* la méthode reçoit en paramètre NULL
+* la méthode renvoie faux (ou lance une NullPointeurException).
+*
+*/
+
+/* ========= void setTurnResult(int, ResultEnum) ==============
+* La méthode setTurnResult permet de donner le résultat d'une rencontre.
+* Cette méthode prend en arguments l'id de la rencontre et le résultat.
+
+Cette méthode fait uniquement appel à la méthode setResult de la classe SingleEliminationTournament.
+
+*/
+
+*/
+/**
+* Cas STR1/
+* void setTurnResult(int idMatch, ResultEnum resultatMatch)
+*
+* pour un idMatch qui n'est pas dans la liste des matchs du tour
+* une TournamentException est levée.
+*/
+
+/**
+* Cas STR2/ 
+* void setTurnResult(int idMatch, ResultEnum resultatMatch)
+*
+* pour un idMatch qui est dans la liste des matchs du tour
+* pour resultatMatch  = PLAYER1
+* on vérifie que 
+* - le résultat du match idMatch est bien mis à PLAYER1
+* - le joueur1 du match correspondant a vu la valeur de ses points augmenter de POINT_WINNER
+* - le joueur2 du match correspondant a vu la valeur de ses points augmenter de POINT_LOSER.
+*
+*/
+
+/**
+* Cas STR3/ 
+* void setTurnResult(int idMatch, ResultEnum resultatMatch)
+*
+* pour un idMatch qui est dans la liste des matchs du tour
+* pour resultatMatch  = PLAYER2
+* on vérifie que 
+* - le résultat du match idMatch est bien mis à PLAYER2
+* - le joueur2 du match correspondant a vu la valeur de ses points augmenter de POINT_WINNER
+* - le joueur1 du match correspondant a vu la valeur de ses points augmenter de POINT_LOSER.
+*
+*/
+
+/**
+* Cas STR4/ 
+* void setTurnResult(int idMatch, ResultEnum resultatMatch)
+*
+* pour un idMatch qui est dans la liste des matchs du tour
+* pour resultatMatch  = DRAW
+* on vérifie qu'une TournamentException est lancée.
+*/
+
+/**
+* Cas STR5/ 
+* void setTurnResult(int idMatch, ResultEnum resultatMatch)
+*
+* pour un idMatch qui est dans la liste des matchs du tour
+* pour resultatMatch  = NULL
+* on vérifie qu' une NullPointeurException est lancée.
+*/
+
+/**
+* Cas STR6/ 
+* void setTurnResult(int idMatch, ResultEnum resultatMatch)
+*
+* pour un idMatch qui est dans la liste des matchs du tour
+* pour resultatMatch = NOT_PLAYED 
+* on vérifie qu' une TournamentException est lancée.
+*/
+
+/* ========= getMatchs et autres ======================
+* Les méthodes getMatchs, getMatchsToPlay et getMatchsDone retournent
+* une liste de matchs. Cette liste dépend de l'état d'avancement du tournoi.
+
+Ces méthodes concernent la liste des matchs en cours.
+*/
+
+
+/**
+* Cas GM1/ 
+List<Match> getMatchs()
+
+* 6 joueurs, inscription fermée, aucun match n'a été joué
+* on vérifie que la méthode renvoie bien 3 matchs générés.
+*/
+
+
+/**
+* Cas GM2/ 
+List<Match> getMatchs()
+
+* 9 joueurs, inscription fermée, aucun match n'a été joué
+* on vérifie que la méthode renvoie bien 4 matchs générés.
+*/
+
+
+/**
+* Cas GM3/ 
+List<Match> getMatchs()
+
+* 1 joueur, inscription fermée, aucun match n'a été joué
+* on vérifie que la méthode renvoie bien 0 match généré.
+*/
+
+/**
+* Cas GM4/ 
+List<Match> getMatchs()
+
+* 9 joueurs, inscription fermée, 2 matchs ont été joués
+* on vérifie que la méthode renvoie bien 4 matchs générés.
+*/
+
+// =================
+
+/**
+* Cas GMD1/ 
+List<Match> getMatchsDone()
+
+* 6 joueurs, inscription fermée, aucun match n'a été joué
+* on vérifie que la liste renvoyée est vide.
+*/
+
+/**
+* Cas GMD2/ 
+List<Match> getMatchsDone()
+
+* 6 joueurs, inscription fermée, 2 matchs ont été joués
+* on vérifie que la liste renvoyée contient les 2 matchs joués.
+*/
+
+
+/**
+* Cas GMD3/ 
+List<Match> getMatchsDone()
+
+* 7 joueurs, inscription fermée, tous les matchs ont été joués
+* on vérifie que la liste renvoyée contient les 3 matchs.
+*/
+
+//===================
+
+/**
+* Cas GMTP1/ 
+List<Match> getMatchsToPlay()
+
+* 6 joueurs, inscription fermée, aucun match n'a été joué
+* on vérifie que la liste renvoyée contient 3 matchs.
+*/
+
+/**
+* Cas GMTP2/ 
+List<Match> getMatchsToPlay()
+
+* 6 joueurs, inscription fermée, 1 match a été joué, il reste 2 matchs à jouer
+* on vérifie que la liste renvoyée contient les 2 matchs à jouer.
+*/
+
+/**
+* Cas GMTP3/ 
+List<Match> getMatchsToPlay()
+
+* 7 joueurs, inscription fermée, les 3 matchs ont été joués
+* on vérifie que la liste renvoyée ne contient aucun élément.
+*/
+
