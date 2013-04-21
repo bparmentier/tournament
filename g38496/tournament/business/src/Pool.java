@@ -24,6 +24,14 @@ public class Pool extends AbstractTournament {
     }
 
     /**
+     * Returns the id of the pool.
+     * @return the id of the pool
+     */
+    public int getId() {
+        return this.id;
+    }
+
+    /**
      * Returns the ranking.
      * @return the ranking
      */
