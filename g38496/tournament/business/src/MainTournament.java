@@ -38,7 +38,7 @@ public class MainTournament {
      */
     public void closeInscription() {
         this.inscriptionsOpen = false;
-        this.poolTournament = new poolTournament(players);
+        this.poolTournament = new PoolTournament(players);
     }
 
     /**
