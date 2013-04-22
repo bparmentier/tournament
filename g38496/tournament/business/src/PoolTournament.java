@@ -15,7 +15,7 @@ public class PoolTournament {
     /**
      * Constructs a pool tournament.
      */
-    public PoolTournament() {
+    public PoolTournament(ArrayList<Player> players) {
     }
 
     /**
