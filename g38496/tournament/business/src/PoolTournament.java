@@ -22,7 +22,7 @@ public class PoolTournament {
 
         for (int i = Config.POOL_MINIMAL_SIZE;
                 i <= Config.POOL_MAXIMAL_SIZE; i++) {
-            if (players.size() % i = 0) {
+            if ((players.size() % i) == 0) {
                 this.poolSize = i;
             }
             //if (players.size() % i = 1) {
@@ -62,8 +62,13 @@ public class PoolTournament {
      */
     public ArrayList<Match> getMatchsToPlay() {
         ArrayList<Match> matchsToPlay = new ArrayList<>();
+        ArrayList<Match> tempMatchs = new ArrayList<>();
+
         for (int i = 0; i < this.pools.size(); i++) {
-            matchsToPlay.add(this.pools.get(i).getMatchsToPlay());
+            tempMatchs = this.pools.get(i).getMatchsToPlay();
+            for (int j = 0; j < tempMatchs.size(); i++) {
+                matchsToPlay.add(tempMatchs.get(j));
+            }
         }
 
         return matchsToPlay;
@@ -75,8 +80,13 @@ public class PoolTournament {
      */
     public ArrayList<Match> getMatchsDone() {
         ArrayList<Match> matchsDone = new ArrayList<>();
+        ArrayList<Match> tempMatchs = new ArrayList<>();
+        
         for (int i = 0; i < this.pools.size(); i++) {
-            matchsDone.add(this.pools.get(i).getMatchsDone());
+            tempMatchs = this.pools.get(i).getMatchsDone();
+            for (int j = 0; j < tempMatchs.size(); i++) {
+                matchsDone.add(tempMatchs.get(j));
+            }
         }
 
         return matchsDone;
@@ -88,8 +98,13 @@ public class PoolTournament {
      */
     public ArrayList<Match> getMatchs() {
         ArrayList<Match> matchs = new ArrayList<>();
+        ArrayList<Match> tempMatchs = new ArrayList<>();
+        
         for (int i = 0; i < this.pools.size(); i++) {
-            matchs.add(this.pools.get(i).getMatchs());
+            tempMatchs = this.pools.get(i).getMatchs();
+            for (int j = 0; j < tempMatchs.size(); i++) {
+                matchs.add(tempMatchs.get(j));
+            }
         }
 
         return matchs;
