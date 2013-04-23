@@ -10,12 +10,6 @@ import java.util.Collections;
  */
 public class SingleEliminationTournament extends AbstractTournament {
 
-    /* list of the tournament's players */
-    //private ArrayList<Player> players;
-
-    /* list of the matchs for the current turn */
-    //private ArrayList<Match> matchs;
-
     /* 
      * player who directly goes to the next turn if the number of participants
      * is odd
@@ -35,7 +29,6 @@ public class SingleEliminationTournament extends AbstractTournament {
      */
     public SingleEliminationTournament(ArrayList<Player> players) {
         super(players);
-        //this.playersCurrentTurn = new ArrayList<>();
         this.players = players;
         this.matchs = new ArrayList<>();
         this.matchsHistory = new ArrayList<>();
