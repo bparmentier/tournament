@@ -52,29 +52,48 @@ public class PoolTournament {
      * @return <code>true</code> if there is still matches to play;
      * <code>false</code> otherwise
      */
-//    public boolean hasMatchsToPlay() {
-//    }
+    public boolean hasMatchsToPlay() {
+
+    }
 
     /**
      * Returns a list of matchs to play.
      * @return a list of matchs to play
      */
-//    public ArrayList<Match> getMatchsToPlay() {
-//    }
+    public ArrayList<Match> getMatchsToPlay() {
+        ArrayList<Match> matchsToPlay = new ArrayList<>();
+        for (int i = 0; i < this.pools.size(); i++) {
+            matchsToPlay.add(this.pools.get(i).getMatchsToPlay());
+        }
+
+        return matchsToPlay;
+    }
 
     /**
      * Returns a list of matchs already played.
      * @return a list of matchs already played
      */
-//    public ArrayList<Match> getMatchsDone() {
-//    }
+    public ArrayList<Match> getMatchsDone() {
+        ArrayList<Match> matchsDone = new ArrayList<>();
+        for (int i = 0; i < this.pools.size(); i++) {
+            matchsDone.add(this.pools.get(i).getMatchsDone());
+        }
+
+        return matchsDone;
+    }
 
     /**
      * Returns the list of the matchs.
      * @return the list of the matchs
      */
-//    public ArrayList<Match> getMatchs() {
-//    }
+    public ArrayList<Match> getMatchs() {
+        ArrayList<Match> matchs = new ArrayList<>();
+        for (int i = 0; i < this.pools.size(); i++) {
+            matchs.add(this.pools.get(i).getMatchs());
+        }
+
+        return matchs;
+    }
 
     /**
      * Sets the result of this match.
