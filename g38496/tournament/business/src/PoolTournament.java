@@ -53,7 +53,7 @@ public class PoolTournament {
      * <code>false</code> otherwise
      */
     public boolean hasMatchsToPlay() {
-
+        return (!this.getMatchsToPlay().isEmpty());
     }
 
     /**
