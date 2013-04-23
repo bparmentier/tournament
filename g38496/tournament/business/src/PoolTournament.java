@@ -16,6 +16,27 @@ public class PoolTournament {
      * Constructs a pool tournament.
      */
     public PoolTournament(ArrayList<Player> players) {
+        ArrayList<Player> pools = new ArrayList<>();
+        ArrayList<Player> poolPlayers = new ArrayList<>();
+        Pool pool;
+
+        for (int i = Config.POOL_MINIMAL_SIZE;
+                i <= Config.POOL_MAXIMAL_SIZE; i++) {
+            if (players.size() % i = 0) {
+                this.poolSize = i;
+            }
+            //if (players.size() % i = 1) {
+            //    this.poolSize = 
+
+        }
+
+        while (poolPlayers.size() <= this.poolSize) {
+            for (int i = 0; i < players.size(); i++) {
+                poolPlayers.add(players.get(i));
+            }
+            pool = new Pool(poolPlayers);
+            this.pools.add(pool);
+        }
     }
 
     /**
@@ -31,7 +52,7 @@ public class PoolTournament {
      * @return <code>true</code> if there is still matches to play;
      * <code>false</code> otherwise
      */
-//    public boolean hasMatchs() {
+//    public boolean hasMatchsToPlay() {
 //    }
 
     /**
