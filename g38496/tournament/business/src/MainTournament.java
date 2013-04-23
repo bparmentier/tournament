@@ -18,7 +18,7 @@ import java.io.IOException;
 public class MainTournament {
 
     /* players list of the tournament */
-    private ArrayList<Player> players = new ArrayList<>();
+    private ArrayList<Player> players;
 
     /* pool tournament */
     private PoolTournament poolTournament;
@@ -39,6 +39,7 @@ public class MainTournament {
      * Opens the inscriptions.
      */
     public void openInscription() {
+        this.players = new ArrayList<>();
         this.inscriptionsOpen = true;
         this.poolPlaying = false;
         this.turnPlaying = false;
@@ -60,7 +61,8 @@ public class MainTournament {
      */
     public void closePoolTournament() throws TournamentException {
         this.poolPlaying = false;
-        this.singleEliminationTournament = new SingleEliminationTournament(this.getRanking());
+        this.singleEliminationTournament =
+                new SingleEliminationTournament(this.getRanking());
         this.turnPlaying = true;
     }
 
@@ -167,7 +169,15 @@ public class MainTournament {
      * @return the list of all the matchs
      */
     public ArrayList<Match> getMatchs() {
-        return this.singleEliminationTournament.getMatchs();
+        ArrayList<Match> matchs = new ArrayList<>();
+        
+        if (poolPlaying) {
+            matchs = this.poolTournament.getMatchs();
+        } else if (turnPlaying) {
+            matchs = this.singleEliminationTournament.getMatchs();
+        }
+
+        return matchs;
     }
 
     /**
@@ -223,7 +233,7 @@ public class MainTournament {
      * <code>false</code> otherwise
      */
     public boolean hasMatchsToPlay() {
-        boolean hasMatchsToPlay;
+        boolean hasMatchsToPlay = false;
         
         if (poolPlaying) {
             hasMatchsToPlay = this.poolTournament.hasMatchsToPlay();
