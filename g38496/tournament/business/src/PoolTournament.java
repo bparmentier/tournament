@@ -16,7 +16,7 @@ public class PoolTournament {
      * Constructs a pool tournament.
      */
     public PoolTournament(ArrayList<Player> players) {
-        ArrayList<Player> pools = new ArrayList<>();
+        this.pools = new ArrayList<>();
         ArrayList<Player> poolPlayers = new ArrayList<>();
         Pool pool;
 
@@ -62,11 +62,11 @@ public class PoolTournament {
      */
     public ArrayList<Match> getMatchsToPlay() {
         ArrayList<Match> matchsToPlay = new ArrayList<>();
-        ArrayList<Match> tempMatchs = new ArrayList<>();
+        ArrayList<Match> tempMatchs = new ArrayList<>(); // pool matches
 
         for (int i = 0; i < this.pools.size(); i++) {
             tempMatchs = this.pools.get(i).getMatchsToPlay();
-            for (int j = 0; j < tempMatchs.size(); i++) {
+            for (int j = 0; j < tempMatchs.size(); j++) {
                 matchsToPlay.add(tempMatchs.get(j));
             }
         }
@@ -80,11 +80,11 @@ public class PoolTournament {
      */
     public ArrayList<Match> getMatchsDone() {
         ArrayList<Match> matchsDone = new ArrayList<>();
-        ArrayList<Match> tempMatchs = new ArrayList<>();
+        ArrayList<Match> tempMatchs = new ArrayList<>(); // pool matches
         
         for (int i = 0; i < this.pools.size(); i++) {
             tempMatchs = this.pools.get(i).getMatchsDone();
-            for (int j = 0; j < tempMatchs.size(); i++) {
+            for (int j = 0; j < tempMatchs.size(); j++) {
                 matchsDone.add(tempMatchs.get(j));
             }
         }
@@ -98,11 +98,11 @@ public class PoolTournament {
      */
     public ArrayList<Match> getMatchs() {
         ArrayList<Match> matchs = new ArrayList<>();
-        ArrayList<Match> tempMatchs = new ArrayList<>();
+        ArrayList<Match> tempMatchs = new ArrayList<>(); // pool matches
         
         for (int i = 0; i < this.pools.size(); i++) {
             tempMatchs = this.pools.get(i).getMatchs();
-            for (int j = 0; j < tempMatchs.size(); i++) {
+            for (int j = 0; j < tempMatchs.size(); j++) {
                 matchs.add(tempMatchs.get(j));
             }
         }
@@ -112,11 +112,15 @@ public class PoolTournament {
 
     /**
      * Sets the result of this match.
-     * @param fId the id of the match
+     * @param id the id of the match
      * @param result the result of the match
-     * @throws TournamentException if match result is <code>DRAW</code> or
-     * <code>null</code>
+     * @throws TournamentException if match result is <code>null</code>
      */
-//    public void setResult(int id, ResultEnum result) {
-//    }
+    public void setResult(int id, ResultEnum result) {
+        Pool pool;
+        for (int i = 0; i < this.pools.size(); i++) {
+            pool = this.pools.get(i);
+            pool.setResult(id, result);
+        }
+    }
 }
