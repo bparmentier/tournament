@@ -64,8 +64,8 @@ public class MainTournament {
         Pool pool;
 
         this.poolPlaying = false;
-        for (int i = 0; i < this.poolTournament.getPools.size(); i++) {
-            pool = this.poolTournament.getPools.get(i);
+        for (int i = 0; i < this.poolTournament.getPools().size(); i++) {
+            pool = this.poolTournament.getPools().get(i);
             turnPlayers.add(pool.getRanking().get(0));
             turnPlayers.add(pool.getRanking().get(1));
         }
@@ -162,7 +162,7 @@ public class MainTournament {
      */
     public void setPoolResult(int id, ResultEnum result)
             throws TournamentException {
-        // FIXME
+        this.poolTournament.setResult(id, result);
     }
 
     /**
