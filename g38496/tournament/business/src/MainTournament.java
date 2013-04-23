@@ -2,6 +2,12 @@ package g38496.tournament.business;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.io.OutputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectInputStream;
+import java.io.FileOutputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 /**
  * The main class of the <em>business</em> part of the application. This class
@@ -26,19 +32,36 @@ public class MainTournament {
     /* single-elimination tournament status */
     private boolean turnPlaying;
 
+    /* pool tournament status */
+    private boolean poolPlaying;
+
     /**
      * Opens the inscriptions.
      */
     public void openInscription() {
         this.inscriptionsOpen = true;
+        this.poolPlaying = false;
+        this.turnPlaying = false;
     }
 
     /**
-     * Closes the inscriptions.
+     * Closes the inscriptions and creates a new pool tournament.
      */
     public void closeInscription() {
         this.inscriptionsOpen = false;
+        this.turnPlaying = false;
         this.poolTournament = new PoolTournament(players);
+        this.poolPlaying = true;
+    }
+
+    /**
+     * Closes the pool tournament and creates a new single-elimination
+     * tournament.
+     */
+    public void closePoolTournament() throws TournamentException {
+        this.poolPlaying = false;
+        this.singleEliminationTournament = new SingleEliminationTournament(this.getRanking());
+        this.turnPlaying = true;
     }
 
     /**
@@ -200,7 +223,15 @@ public class MainTournament {
      * <code>false</code> otherwise
      */
     public boolean hasMatchsToPlay() {
-        return this.singleEliminationTournament.hasMatchsToPlay();
+        boolean hasMatchsToPlay;
+        
+        if (poolPlaying) {
+            hasMatchsToPlay = this.poolTournament.hasMatchsToPlay();
+        } else if (turnPlaying) {
+            hasMatchsToPlay = this.singleEliminationTournament.hasMatchsToPlay();
+        }
+
+        return hasMatchsToPlay;
     }
 
     /**
