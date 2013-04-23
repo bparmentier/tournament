@@ -57,12 +57,21 @@ public class MainTournament {
 
     /**
      * Closes the pool tournament and creates a new single-elimination
-     * tournament.
+     * tournament with the first two players of each pool.
      */
     public void closePoolTournament() throws TournamentException {
+        ArrayList<Player> turnPlayers = new ArrayList<>();
+        Pool pool;
+
         this.poolPlaying = false;
+        for (int i = 0; i < this.poolTournament.getPools.size(); i++) {
+            pool = this.poolTournament.getPools.get(i);
+            turnPlayers.add(pool.getRanking().get(0));
+            turnPlayers.add(pool.getRanking().get(1));
+        }
+
         this.singleEliminationTournament =
-                new SingleEliminationTournament(this.getRanking());
+                new SingleEliminationTournament(players);
         this.turnPlaying = true;
     }
 
