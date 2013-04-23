@@ -185,17 +185,16 @@ public class MainTournament {
      * @return the list of the matchs already played
      */
     public ArrayList<Match> getMatchsDone() {
-        ArrayList<Match> matchs = singleEliminationTournament.getMatchs();
-        ArrayList<Match> matchsDone = new ArrayList<>();
-        Match match;
-        for (int i = 0; i < matchs.size(); i++) {
-            match = matchs.get(i);
-            if (match.getResult() != ResultEnum.NOT_PLAYED) {
-                matchsDone.add(match);
-            }
-        }
+        ArrayList<Match> matchs = new ArrayList<>();
         
-        return matchsDone;
+        if (poolPlaying) {
+            matchs = this.poolTournament.getMatchsDone();
+        } else if (turnPlaying) {
+            matchs = this.singleEliminationTournament.getMatchsDone();
+        }
+
+        return matchs;
+
     }
 
     /**
@@ -203,17 +202,15 @@ public class MainTournament {
      * @return the list of the matchs not yet played
      */
     public ArrayList<Match> getMatchsToPlay() {
-        ArrayList<Match> matchs = singleEliminationTournament.getMatchs();
-        ArrayList<Match> matchsToPlay = new ArrayList<>();
-        Match match;
-        for (int i = 0; i < matchs.size(); i++) {
-            match = matchs.get(i);
-            if (match.getResult() == ResultEnum.NOT_PLAYED) {
-                matchsToPlay.add(match);
-            }
-        }
+        ArrayList<Match> matchs = new ArrayList<>();
         
-        return matchsToPlay;
+        if (poolPlaying) {
+            matchs = this.poolTournament.getMatchsToPlay();
+        } else if (turnPlaying) {
+            matchs = this.singleEliminationTournament.getMatchsToPlay();
+        }
+
+        return matchs;
     }
 
     /**
