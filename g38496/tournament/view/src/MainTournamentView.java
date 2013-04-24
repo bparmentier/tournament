@@ -20,7 +20,7 @@ public class MainTournamentView {
         MainTournament mainTournament = new MainTournament();
         String command;
 
-        System.out.println("Project Tournament v1");
+        System.out.println("Project Tournament v2");
         System.out.println("Type \"help\" for a list of commands.\n");
 
         System.out.print("> ");
