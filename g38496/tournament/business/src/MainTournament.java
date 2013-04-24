@@ -50,9 +50,8 @@ public class MainTournament {
      */
     public void closeInscription() {
         this.inscriptionsOpen = false;
-        this.turnPlaying = false;
-        this.poolTournament = new PoolTournament(players);
         this.poolPlaying = true;
+        this.poolTournament = new PoolTournament(this.players);
     }
 
     /**
@@ -70,9 +69,9 @@ public class MainTournament {
             turnPlayers.add(pool.getRanking().get(1));
         }
 
+        this.turnPlaying = true;
         this.singleEliminationTournament =
                 new SingleEliminationTournament(players);
-        this.turnPlaying = true;
     }
 
     /**
@@ -138,8 +137,6 @@ public class MainTournament {
             throws TournamentException {
         if (result == null) {
             throw new NullPointerException("Result cannot be null");
-        } else if (result == ResultEnum.NOT_PLAYED) {
-            throw new TournamentException("Result cannot be set to NOT_PLAYED");
         } else if (this.singleEliminationTournament.hasMatchsToPlay()) {
             this.singleEliminationTournament.setResult(id, result);
         } else {
@@ -162,7 +159,13 @@ public class MainTournament {
      */
     public void setPoolResult(int id, ResultEnum result)
             throws TournamentException {
-        this.poolTournament.setResult(id, result);
+        if (result == null) {
+            throw new NullPointerException("Result cannot be null");
+        } else if (this.poolTournament.hasMatchsToPlay()) {
+            this.poolTournament.setResult(id, result);
+        } else {
+            throw new TournamentException("Cannot set result");
+        }
     }
 
     /**
