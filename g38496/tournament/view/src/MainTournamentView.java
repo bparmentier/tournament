@@ -196,7 +196,8 @@ public class MainTournamentView {
                 System.out.print("Enter filename: ");
                 filename = scanner.nextLine();
                 try {
-                    mainTournament.createPdf(userHome + "/" + filename);
+                    mainTournament.createPdf(userHome
+                            + System.getProperty("path.separator") + filename);
                     System.out.println("PDF created in " + userHome + "/"
                             + filename);
                 } catch (DocumentException e) {
