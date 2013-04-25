@@ -98,7 +98,7 @@ public class Match {
             return null;
         }
     }
-    
+
     /**
      * Returns the string representation of the object
      * @return the string representation of the object
