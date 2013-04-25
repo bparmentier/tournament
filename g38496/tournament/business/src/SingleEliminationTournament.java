@@ -37,6 +37,20 @@ public class SingleEliminationTournament extends AbstractTournament {
     }
 
     /**
+     * Sets the result of this match.
+     * @param id the id of the match
+     * @param result the result of the match
+     * @throws TournamentException
+     */
+    @Override
+    public void setResult(int id, ResultEnum result) throws TournamentException {
+        super.setResult(id, result);
+        if (result == ResultEnum.DRAW) {
+            throw new TournamentException("Match result cannot be drawn");
+        }
+    }
+
+    /**
      * Returns <code>true</code> if there is still a turn
      * @return <code>true</code> if there is still a turn; <code>false</code>
      * if it is the last turn
