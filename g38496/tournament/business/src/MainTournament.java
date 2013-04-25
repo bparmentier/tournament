@@ -8,6 +8,10 @@ import java.io.ObjectInputStream;
 import java.io.FileOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 
 /**
  * The main class of the <em>business</em> part of the application. This class
@@ -156,6 +160,8 @@ public class MainTournament {
      * Sets the result of a match.
      * @param id the id of the match
      * @param result the result of the match to set
+     * @throws NullPointerException if the result is <code>null</code>
+     * @throws TournamentException if the result cannot be set
      */
     public void setPoolResult(int id, ResultEnum result)
             throws TournamentException {
@@ -183,9 +189,9 @@ public class MainTournament {
     public ArrayList<Match> getMatchs() {
         ArrayList<Match> matchs = new ArrayList<>();
         
-        if (poolPlaying) {
+        if (this.poolPlaying) {
             matchs = this.poolTournament.getMatchs();
-        } else if (turnPlaying) {
+        } else if (this.turnPlaying) {
             matchs = this.singleEliminationTournament.getMatchs();
         }
 
@@ -199,14 +205,13 @@ public class MainTournament {
     public ArrayList<Match> getMatchsDone() {
         ArrayList<Match> matchs = new ArrayList<>();
         
-        if (poolPlaying) {
+        if (this.poolPlaying) {
             matchs = this.poolTournament.getMatchsDone();
-        } else if (turnPlaying) {
+        } else if (this.turnPlaying) {
             matchs = this.singleEliminationTournament.getMatchsDone();
         }
 
         return matchs;
-
     }
 
     /**
@@ -216,9 +221,9 @@ public class MainTournament {
     public ArrayList<Match> getMatchsToPlay() {
         ArrayList<Match> matchs = new ArrayList<>();
         
-        if (poolPlaying) {
+        if (this.poolPlaying) {
             matchs = this.poolTournament.getMatchsToPlay();
-        } else if (turnPlaying) {
+        } else if (this.turnPlaying) {
             matchs = this.singleEliminationTournament.getMatchsToPlay();
         }
 
@@ -243,10 +248,10 @@ public class MainTournament {
      */
     public boolean hasMatchsToPlay() {
         boolean hasMatchsToPlay = false;
-        
-        if (poolPlaying) {
+
+        if (this.poolPlaying) {
             hasMatchsToPlay = this.poolTournament.hasMatchsToPlay();
-        } else if (turnPlaying) {
+        } else if (this.turnPlaying) {
             hasMatchsToPlay = this.singleEliminationTournament.hasMatchsToPlay();
         }
 
@@ -273,5 +278,20 @@ public class MainTournament {
         }
 
         return winner;
+    }
+
+    public void createPdf(String filename)
+            throws DocumentException, IOException {
+        Document document = new Document();
+        PdfWriter.getInstance(document, new FileOutputStream(filename));
+        document.open();
+
+        /* Title */
+        document.add(new Paragraph("Project Tournament v2\n"));
+        
+        /* List of players */
+        document.add(new Paragraph("List of players:\n" + this.players));
+
+        document.close();
     }
 }
