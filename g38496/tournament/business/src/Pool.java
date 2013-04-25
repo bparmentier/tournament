@@ -43,6 +43,11 @@ public class Pool extends AbstractTournament {
     }
 
     @Override
+    public String toString() {
+        return "Pool id: " + this.id + "\n" + this.matchs;
+    }
+
+    @Override
     protected void generateMatchs() {
         Match match;
         Collections.shuffle(this.players);
