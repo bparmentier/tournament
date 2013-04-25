@@ -231,6 +231,7 @@ public class MainTournamentView {
                 + "setresult\tset match result\n"
                 + "ranking\t\tshow ranking\n"
                 + "winner\t\tshow winner\n"
+                + "createpdf\texport tournament in PDF\n"
                 + "exit\t\texit the program");
     }
 }
