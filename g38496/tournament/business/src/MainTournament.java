@@ -296,11 +296,11 @@ public class MainTournament {
         document.add(new Paragraph("Project Tournament v2\n\n"));
 
         /* List of players */
-        document.add(new Paragraph("List of players:\n" + this.players));
+        document.add(new Paragraph("List of players:\n" + this.players + "\n"));
 
         /* List of pools */
         document.add(new Paragraph("List of pools:\n"
-                    + this.poolTournament.getPools()));
+                    + this.poolTournament.getPools() + "\n"));
 
         document.close();
     }
