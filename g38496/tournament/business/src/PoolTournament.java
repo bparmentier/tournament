@@ -134,13 +134,13 @@ public class PoolTournament {
      */
     public void setResult(int id, ResultEnum result) throws TournamentException {
         Pool pool;
-        //for (int i = 0; i < this.pools.size(); i++) {
+        for (int i = 0; i < this.pools.size(); i++) {
             for (int j = 0; j < this.getMatchs().size(); j++) {
-                if (this.getMatchs().get(j).getId() == id) {
-                    pool = this.pools.get(j);
+                if (this.pools.get(i).getMatchs().get(j).getId() == id) {
+                    pool = this.pools.get(i);
                     pool.setResult(id, result);
                 }
             }
-        //}
+        }
     }
 }
