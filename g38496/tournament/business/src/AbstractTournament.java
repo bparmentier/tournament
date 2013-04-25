@@ -72,15 +72,14 @@ abstract class AbstractTournament {
      * Sets the result of this match.
      * @param fId the id of the match
      * @param result the result of the match
-     * @throws TournamentException if match result is <code>DRAW</code> or
-     * <code>null</code>
+     * @throws TournamentException
      */
     public void setResult(int fId, ResultEnum result)
             throws TournamentException {
         Match match; // a match
-        
-        if ((result == ResultEnum.DRAW) || (result == null)) {
-            throw new TournamentException("Match result cannot be drawn");
+
+        if (result == null) {
+            throw new TournamentException("Match result cannot be null");
         } else {
             match = this.getMatch(fId);
             if (this.matchs.contains(match)) {
