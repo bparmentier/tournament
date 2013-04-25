@@ -280,6 +280,12 @@ public class MainTournament {
         return winner;
     }
 
+    /**
+     * Creates a PDF document.
+     * @param filename the path to the new PDF document
+     * @throws DocumentException 
+     * @throws IOException 
+     */
     public void createPdf(String filename)
             throws DocumentException, IOException {
         Document document = new Document();
@@ -287,10 +293,14 @@ public class MainTournament {
         document.open();
 
         /* Title */
-        document.add(new Paragraph("Project Tournament v2\n"));
-        
+        document.add(new Paragraph("Project Tournament v2\n\n"));
+
         /* List of players */
         document.add(new Paragraph("List of players:\n" + this.players));
+
+        /* List of pools */
+        document.add(new Paragraph("List of pools:\n"
+                    + this.poolTournament.getPools()));
 
         document.close();
     }
