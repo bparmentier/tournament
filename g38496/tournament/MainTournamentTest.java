@@ -305,7 +305,7 @@ public class MainTournamentTest {
 */
 
     /* getMatchs() */
-
+/*
     @Test
     public void getMatchs_case1() {
         MainTournament mainTournament = new MainTournament();
@@ -361,9 +361,9 @@ public class MainTournamentTest {
 
         assertEquals(4, mainTournament.getMatchs().size());
     }
-
+*/
     /* getMatchsDone() */
-
+/*
     @Test
     public void getMatchsDone_case1() {
         MainTournament mainTournament = new MainTournament();
@@ -416,9 +416,9 @@ public class MainTournamentTest {
 
         assertEquals(3, mainTournament.getMatchsDone().size());
     }
-
+*/
     /* getMatchsToPlay() */
-
+/*
     @Test
     public void getMatchsToPlay_case1() {
         MainTournament mainTournament = new MainTournament();
@@ -469,4 +469,5 @@ public class MainTournamentTest {
 
         assertEquals(0, mainTournament.getMatchsToPlay().size());
     }
+*/
 }
