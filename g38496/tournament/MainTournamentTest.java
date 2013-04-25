@@ -182,9 +182,6 @@ public class MainTournamentTest {
 
         players = mainTournament.getPlayers();
         assertEquals(expectedPlayers.size(), players.size());
-//        for (int i = 0; i < players.size(); i++) {
-//            assertEquals(expectedPlayers.get(i), players.get(i));
-//        }
     }
 
     @Test
@@ -210,7 +207,7 @@ public class MainTournamentTest {
     }
 
     /* setTurnResult() */
-
+/*
     @Test(expected=TournamentException.class)
     public void setTurnResult_case1() throws TournamentException {
         MainTournament mainTournament = new MainTournament();
@@ -305,6 +302,7 @@ public class MainTournamentTest {
         matchId = mainTournament.getMatchs().get(2).getId();
         mainTournament.setTurnResult(matchId, ResultEnum.NOT_PLAYED);
     }
+*/
 
     /* getMatchs() */
 
