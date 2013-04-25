@@ -3,6 +3,8 @@ package g38496.tournament.view;
 import g38496.tournament.business.*;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.IOException;
+import com.itextpdf.text.DocumentException;
 
 /**
  * User interface of the application.
@@ -184,6 +186,22 @@ public class MainTournamentView {
                 try {
                     System.out.println(mainTournament.getWinner());
                 } catch (TournamentException e) {
+                    System.out.println(e.getMessage());
+                }
+
+            /* create PDF */
+            } else if (command.equals("createpdf")) {
+                String filename;
+                String userHome = System.getProperty("user.home");
+                System.out.print("Enter filename: ");
+                filename = scanner.nextLine();
+                try {
+                    mainTournament.createPdf(userHome + "/" + filename);
+                    System.out.println("PDF created in " + userHome + "/"
+                            + filename);
+                } catch (DocumentException e) {
+                    System.out.println(e.getMessage());
+                } catch (IOException e) {
                     System.out.println(e.getMessage());
                 }
 
