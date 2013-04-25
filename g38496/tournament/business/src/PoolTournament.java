@@ -17,25 +17,41 @@ public class PoolTournament {
      */
     public PoolTournament(ArrayList<Player> players) {
         this.pools = new ArrayList<>();
-        ArrayList<Player> poolPlayers = new ArrayList<>();
+        calculatePoolSize(players.size());
         Pool pool;
-
-        for (int i = Config.POOL_MINIMAL_SIZE;
-                i <= Config.POOL_MAXIMAL_SIZE; i++) {
-            if ((players.size() % i) == 0) {
-                this.poolSize = i;
+        ArrayList<Player> poolPlayers;
+        
+        for (int i = 0; i < players.size(); i += this.poolSize) {
+            poolPlayers = new ArrayList<>();
+            int j = 0;
+            while (j < this.poolSize - 1) {
+                poolPlayers.add(players.get(j));
+                j++;
             }
-            //if (players.size() % i = 1) {
-            //    this.poolSize = 
 
-        }
-
-        while (poolPlayers.size() <= this.poolSize) {
-            for (int i = 0; i < players.size(); i++) {
-                poolPlayers.add(players.get(i));
-            }
             pool = new Pool(poolPlayers);
             this.pools.add(pool);
+        }
+    }
+
+    /**
+     * Calculates optimal pool size.
+     * @param playersNumber number of players
+     * @return optimal pool size
+     */
+    public void calculatePoolSize(int playersNumber) {
+        boolean found = false;
+        int j = 0;
+        
+        while (!found) {
+            for (int i = Config.POOL_MINIMAL_SIZE;
+                    i <= Config.POOL_MAXIMAL_SIZE; i++) {
+                if (((playersNumber + j) % i) == 0) {
+                    this.poolSize = i;
+                    found = true;
+                }
+                j++;
+            }
         }
     }
 
@@ -116,7 +132,7 @@ public class PoolTournament {
      * @param result the result of the match
      * @throws TournamentException if match result is <code>null</code>
      */
-    public void setResult(int id, ResultEnum result) {
+    public void setResult(int id, ResultEnum result) throws TournamentException {
         Pool pool;
         for (int i = 0; i < this.pools.size(); i++) {
             pool = this.pools.get(i);
