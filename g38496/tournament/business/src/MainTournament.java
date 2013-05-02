@@ -75,7 +75,7 @@ public class MainTournament {
 
         this.turnPlaying = true;
         this.singleEliminationTournament =
-                new SingleEliminationTournament(players);
+                new SingleEliminationTournament(turnPlayers);
     }
 
     /**
