@@ -17,15 +17,17 @@ public class PoolTournament {
      */
     public PoolTournament(ArrayList<Player> players) {
         this.pools = new ArrayList<>();
-        calculatePoolSize(players.size());
+        this.poolSize = calculatePoolSize(players.size());
         Pool pool;
         ArrayList<Player> poolPlayers;
         
-        for (int i = 0; i < players.size(); i += this.poolSize) {
+        for (int i = 0; i < players.size(); i += this.poolSize) { // FIXME
             poolPlayers = new ArrayList<>();
             int j = 0;
-            while (j < this.poolSize - 1) {
-                poolPlayers.add(players.get(j));
+            while (j < (this.poolSize - 1)) {
+                if ((i + poolPlayers.size()) <= players.size()) {
+                    poolPlayers.add(players.get(i + j));
+                }
                 j++;
             }
 
