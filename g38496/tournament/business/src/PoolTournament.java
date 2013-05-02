@@ -43,6 +43,10 @@ public class PoolTournament {
         boolean found = false;
         int j = 0;
         
+        /*
+         * Calculate optimal pool size included between POOL_MINIMAL_SIZE and
+         * POOL_MAXIMAL_SIZE.
+         */
         while (!found) {
             for (int i = Config.POOL_MINIMAL_SIZE;
                     i <= Config.POOL_MAXIMAL_SIZE; i++) {
