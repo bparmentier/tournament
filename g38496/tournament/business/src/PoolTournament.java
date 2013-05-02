@@ -39,8 +39,9 @@ public class PoolTournament {
      * @param playersNumber number of players
      * @return optimal pool size
      */
-    public void calculatePoolSize(int playersNumber) {
+    public int calculatePoolSize(int playersNumber) {
         boolean found = false;
+        int poolSize = 0;
         int j = 0;
         
         /*
@@ -51,12 +52,14 @@ public class PoolTournament {
             for (int i = Config.POOL_MINIMAL_SIZE;
                     i <= Config.POOL_MAXIMAL_SIZE; i++) {
                 if (((playersNumber + j) % i) == 0) {
-                    this.poolSize = i;
+                    poolSize = i;
                     found = true;
                 }
             }
             j++;
         }
+
+        return poolSize;
     }
 
     /**
