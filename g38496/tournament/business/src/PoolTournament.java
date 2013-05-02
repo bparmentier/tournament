@@ -50,8 +50,8 @@ public class PoolTournament {
                     this.poolSize = i;
                     found = true;
                 }
-                j++;
             }
+            j++;
         }
     }
 
